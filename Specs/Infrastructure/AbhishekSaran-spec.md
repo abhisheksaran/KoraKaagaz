@@ -16,8 +16,7 @@
 
 ### Class Diagram for Interface 
 
-![](https://imgur.com/gTvhn42)
-
+![](https://i.imgur.com/gTvhn42.png)
 
 ### Function Elaboration ITest Interface 
 
