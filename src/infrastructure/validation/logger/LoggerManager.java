@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * 
  */
@@ -12,6 +13,19 @@ public class LoggerManager implements ILogger {
 	/**
 	 * 
 	 */
+=======
+package infrastructure.validation.logger;
+
+/**
+ * LoggerManager class that will be referenced by other modules,
+ * for logging via the LoggerFactory
+ * Implements ILogger interface and composes File and Console Loggers
+ * 
+ * @author Navaneeth M Nambiar
+ */
+public class LoggerManager implements ILogger {
+
+>>>>>>> upstream/74_test_harness
 	protected LoggerManager() {
 		// TODO Auto-generated constructor stub
 	}
