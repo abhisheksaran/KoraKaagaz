@@ -128,8 +128,48 @@ public class TestHarness{
 
   // Manas's code finishes here
 
+
+
   void runAll(){
- 	 
+  
+    //get all the test cases in infrastucture module
+ 	  File testFolderInfrastucture = new File("../../../infrastucture/tests");
+	  File[] listOfTests = testFolder.listFiles();
+	  System.out.println("Running all the test cases of infrastucture module...");
+	  for (File file : listOfTests){
+    if (file.isFile()) {
+        runByName(file.getName());
+    }
+    
+    //get all the test cases in networking module
+ 	  File testFolderInfrastucture = new File("../../../networking/tests");
+	  File[] listOfTests = testFolder.listFiles();
+	  System.out.println("Running all the test cases of networking module...");
+	  for (File file : listOfTests){
+    if (file.isFile()) {
+        runByName(file.getName());
+    }
+    
+    //get all the test cases in processing module
+ 	  File testFolderInfrastucture = new File("../../../processing/tests");
+	  File[] listOfTests = testFolder.listFiles();
+	  System.out.println("Running all the test cases of processing module...");
+	  for (File file : listOfTests){
+    if (file.isFile()) {
+        runByName(file.getName());
+    }
+    
+    //get all the test cases in UI module
+ 	  File testFolderInfrastucture = new File("../../../UI/tests");
+    File[] listOfTests = testFolder.listFiles();
+	  System.out.println("Running all the test cases of UI module...");
+	  for (File file : listOfTests){
+    if (file.isFile()) {
+        runByName(file.getName());
+    }
+    
+}
+	  
   }  
   
  /**
