@@ -129,11 +129,24 @@ public class TestHarness{
   // Manas's code finishes here
 
   void runAll(){
-  
+ 	 
   }  
   
-  void runByName(){
-  
+ /**
+  * Boolean method to give result of the Test Case Class
+  * @param testName    The file name of test case class including .java extension
+  * @return    <code>true</code> if the test case pass 
+  *     and actual output is same as expected output; 
+  *     <code>false</code> otherwise.
+  */
+  public boolean runByName(String testName){
+    String[] arrOfStr = str.split(".", 2); 
+    String testClassName = arrOfStr[0];
+    TestCase test = Class.forName(testClassName).newInstance();
+    bool result = test.run();
+    
+    //after saving the result using logger
+    return result;
   }
 
 }
