@@ -7,18 +7,18 @@
  * @summary       To provide functionality to tester to run test case sets in various ways- 
                   Methods such as runAll(), runByName(), runByCategroy() and run by  Priority() are provided. 
  */
-
 package infrastructure.validation.testing;
+import java.io.File;
 
 public class TestHarness{
-
+  
   private String savePath;
   
   void setSavePath(String path){
     this.savePath=path;
   }
   
-  void getSavePath(){
+  String getSavePath(){
     return this.savePath;
   }
   
@@ -128,62 +128,68 @@ public class TestHarness{
 
   // Manas's code finishes here
 
-
-
+ /**
+  * Run all test cases of all modules one by one 
+  */
   void runAll(){
   
     //get all the test cases in infrastucture module
- 	  File testFolderInfrastucture = new File("../../../infrastucture/tests");
-	  File[] listOfTests = testFolder.listFiles();
-	  System.out.println("Running all the test cases of infrastucture module...");
-	  for (File file : listOfTests){
-    if (file.isFile()) {
+    File testFolderInfrastucture = new File("../../../infrastucture/tests");
+    File[] listOfTests1 = testFolderInfrastucture.listFiles();
+    System.out.println("Running all the test cases of infrastucture module...");
+    for(File file : listOfTests1){
+      if(file.isFile()){
         runByName(file.getName());
+      }
     }
     
     //get all the test cases in networking module
- 	  File testFolderInfrastucture = new File("../../../networking/tests");
-	  File[] listOfTests = testFolder.listFiles();
-	  System.out.println("Running all the test cases of networking module...");
-	  for (File file : listOfTests){
-    if (file.isFile()) {
+    File testFolderNetworking = new File("../../../networking/tests");
+    File[] listOfTests2 = testFolderNetworking.listFiles();
+    System.out.println("Running all the test cases of networking module...");
+    for(File file : listOfTests2){
+      if (file.isFile()){
         runByName(file.getName());
+      }
     }
-    
+
     //get all the test cases in processing module
- 	  File testFolderInfrastucture = new File("../../../processing/tests");
-	  File[] listOfTests = testFolder.listFiles();
-	  System.out.println("Running all the test cases of processing module...");
-	  for (File file : listOfTests){
-    if (file.isFile()) {
+    File testFolderProcessing = new File("../../../processing/tests");
+    File[] listOfTests3 = testFolderProcessing.listFiles();
+    System.out.println("Running all the test cases of processing module...");
+    for(File file : listOfTests3){
+      if(file.isFile()){
         runByName(file.getName());
+      }
     }
     
     //get all the test cases in UI module
- 	  File testFolderInfrastucture = new File("../../../UI/tests");
-    File[] listOfTests = testFolder.listFiles();
-	  System.out.println("Running all the test cases of UI module...");
-	  for (File file : listOfTests){
-    if (file.isFile()) {
+    File testFolderUI = new File("../../../UI/tests");
+    File[] listOfTests4 = testFolderUI.listFiles();
+    System.out.println("Running all the test cases of UI module...");
+    for(File file : listOfTests4){
+      if(file.isFile()) {
         runByName(file.getName());
+      }
     }
     
 }
 	  
-  }  
+ 
   
  /**
   * Boolean method to give result of the Test Case Class
-  * @param testName    The file name of test case class including .java extension
+  * @param testName    The absoulete path to file name of test case class including .java extension as a string
   * @return    <code>true</code> if the test case pass 
   *     and actual output is same as expected output; 
   *     <code>false</code> otherwise.
   */
   public boolean runByName(String testName){
-    String[] arrOfStr = str.split(".", 2); 
+    String[] arrOfStr = testName.split(".", 2); 
     String testClassName = arrOfStr[0];
-    TestCase test = Class.forName(testClassName).newInstance();
-    bool result = test.run();
+    Class<?> clazz = Class.forName("testClassName");
+    Object test = clazz.getDeclaredConstructor().newInstance();
+    boolean result = test.run();
     
     //after saving the result using logger
     return result;
