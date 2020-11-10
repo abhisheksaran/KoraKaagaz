@@ -1,6 +1,5 @@
 /**
- * @author        Abhishek Saran
- * @author        Manas Sanjay
+ * @author        Abhishek Saran, Manas Sanjay
  * @module        Infrastructure module 
  * @team          Test Harness
  * @description   Test Harness main class
@@ -9,7 +8,7 @@
  */
 package infrastructure.validation.testing;
 import java.io.File;
-
+import java.util.*;
 public class TestHarness{
   
   private String savePath;
@@ -132,51 +131,29 @@ public class TestHarness{
   * Run all test cases of all modules one by one 
   */
   void runAll(){
-  
-    //get all the test cases in infrastucture module
-    File testFolderInfrastucture = new File("../../../infrastucture/tests");
-    File[] listOfTests1 = testFolderInfrastucture.listFiles();
-    System.out.println("Running all the test cases of infrastucture module...");
-    for(File file : listOfTests1){
-      if(file.isFile()){
-        runByName(file.getName());
-      }
-    }
-    
-    //get all the test cases in networking module
-    File testFolderNetworking = new File("../../../networking/tests");
-    File[] listOfTests2 = testFolderNetworking.listFiles();
-    System.out.println("Running all the test cases of networking module...");
-    for(File file : listOfTests2){
-      if (file.isFile()){
-        runByName(file.getName());
-      }
-    }
-
-    //get all the test cases in processing module
-    File testFolderProcessing = new File("../../../processing/tests");
-    File[] listOfTests3 = testFolderProcessing.listFiles();
-    System.out.println("Running all the test cases of processing module...");
-    for(File file : listOfTests3){
-      if(file.isFile()){
-        runByName(file.getName());
-      }
-    }
-    
-    //get all the test cases in UI module
-    File testFolderUI = new File("../../../UI/tests");
-    File[] listOfTests4 = testFolderUI.listFiles();
-    System.out.println("Running all the test cases of UI module...");
-    for(File file : listOfTests4){
-      if(file.isFile()) {
-        runByName(file.getName());
-      }
-    }
-    
-}
+    File[] modules = new File("../../../").listFiles(File::isDirectory);
+    ArrayList<File> allTests = new ArrayList<File>();
+		for(File module : modules){
+		  if(module.isDirectory()){
+		  	String strModule = module.getName();
+		  	System.out.println(strModule);
+			  try {
+				  File f = new File("src/"+strModule+"/tests/");
+				  File[] tests  = f.listFiles(File::isFile);
+				  for (File test : tests){
+					  if(test.getName().endsWith("Test.java")){
+						  allTests.add(test);
+						  runByName(test.getName());  
+					  }
+				  } 
+	    	}
+	    	catch (Exception e){
+	  		  System.out.println("Exception in module: "+strModule+" >> "+e);
+		    }
+		  }
+    }   
+  } 
 	  
- 
-  
  /**
   * Boolean method to give result of the Test Case Class
   * @param testName    The absoulete path to file name of test case class including .java extension as a string
