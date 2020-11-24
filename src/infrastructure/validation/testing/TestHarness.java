@@ -256,8 +256,7 @@ public class TestHarness{
 
         Class<?> testClass = Class.forName(fullQualifiedClassName);
         Object obj = testClass.getDeclaredConstructor().newInstance();
-        ITest test = (ITest) obj;
-
+        ITest test = (ITest) obj;s
         boolean result = test.run();  
          
         if(result == false){
